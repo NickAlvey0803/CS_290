@@ -21,6 +21,7 @@ app.get('/HW5-get',function(req,res){
   res.render('HW5-get', context);
 });
 
+
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,6 +36,15 @@ app.post('/HW5-post', function(req,res){
   console.log(req.body);
   var context = {};
   context.dataList = qParams;
+
+
+  var qParams2 = [];
+  for (var p in req.query){
+    qParams2.push({'name2':p,'value2':req.query[p]})
+  }
+  
+  context.dataList2 = qParams2;
+
   res.render('HW5-post', context);
 });
 

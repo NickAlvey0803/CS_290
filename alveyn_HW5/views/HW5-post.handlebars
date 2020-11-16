@@ -1,4 +1,19 @@
 <h1>You sent the following data in a POST request:</h1>
+
+<h2>Data From Query</h2>
+<table>
+	<tr>
+		<th>Parameter Name</th>
+		<th>Parameter Value</th>
+	</tr>
+  {{#each dataList2}}
+    <tr>
+    	<td>{{this.name2}}</td>
+    	<td>{{this.value2}}</td>
+    </tr>
+  {{/each}}
+</table>
+
 <table>
 	<tr>
 		<th>Parameter Name</th>
