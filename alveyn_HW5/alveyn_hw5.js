@@ -13,12 +13,12 @@ app.set('view engine', 'handlebars');
 app.set('port', 38999);
 
 
-// app.get('/',function(req,res){
-//   res.render('home.handlebars') //We can omit the .handlebars extension as we do below
-// });
+app.get('/',function(req,res){
+  res.render('home.handlebars') //We can omit the .handlebars extension as we do below
+});
 
 
-app.post('/', function(req,res){
+app.post('/HW5-post', function(req,res){
 
   var qParams3 = [];
   for (var p in req.body){
@@ -36,7 +36,7 @@ app.post('/', function(req,res){
   
   context2.dataList2 = qParams2;
 
-  res.render('HW5-post', context2);
+  res.render('HW5-post.handlebars', context2);
 });
 
 app.get('/HW5-get',function(req,res){
@@ -46,7 +46,7 @@ app.get('/HW5-get',function(req,res){
   }
   var context = {};
   context.dataList = qParams;
-  res.render('HW5-get', context);
+  res.render('HW5-get.handlebars', context);
 });
 
 app.use(function(req,res){
