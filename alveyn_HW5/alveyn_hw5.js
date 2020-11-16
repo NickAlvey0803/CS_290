@@ -3,27 +3,22 @@ var express = require('express');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
-app.set('port', 38999);
-
-app.get('/',function(req,res){
-  res.render('home.handlebars') //We can omit the .handlebars extension as we do below
-});
-
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/HW5-post', function(req,res){
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+app.set('port', 38999);
 
-  var qParams2 = [];
-  for (var p in req.query){
-    qParams2.push({'name2':p,'value2':req.query[p]})
-  }
-  
-  context2.dataList2 = qParams2;
+
+app.get('/',function(req,res){
+  res.render('home.handlebars') //We can omit the .handlebars extension as we do below
+});
+
+
+app.post('/HW5-post', function(req,res){
 
   var qParams3 = [];
   for (var p in req.body){
@@ -33,9 +28,13 @@ app.post('/HW5-post', function(req,res){
   console.log(req.body);
   var context2 = {};
   context2.dataList = qParams3;
-
-
   
+  var qParams2 = [];
+  for (var p in req.query){
+    qParams2.push({'name2':p,'value2':req.query[p]})
+  }
+  
+  context2.dataList2 = qParams2;
 
   res.render('HW5-post', context2);
 });
