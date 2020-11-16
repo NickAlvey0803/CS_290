@@ -28,14 +28,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/HW5-post', function(req,res){
-  var qParams = [];
+  var qParams3 = [];
   for (var p in req.body){
-    qParams.push({'name':p,'value':req.body[p]})
+    qParams3.push({'name':p,'value':req.body[p]})
   }
-  console.log(qParams);
+  console.log(qParams3);
   console.log(req.body);
-  var context = {};
-  context.dataList = qParams;
+  var context2 = {};
+  context2.dataList = qParams;
 
 
   var qParams2 = [];
@@ -43,15 +43,15 @@ app.post('/HW5-post', function(req,res){
     qParams2.push({'name2':p,'value2':req.query[p]})
   }
   
-  context.dataList2 = qParams2;
+  context2.dataList2 = qParams2;
 
   res.render('HW5-post', context);
 });
 
-app.use(function(req,res){
-  res.status(404);
-  res.render('404');
-});
+// app.use(function(req,res){
+//   res.status(404);
+//   res.render('404');
+// });
 
 app.use(function(err, req, res, next){
   console.error(err.stack);
