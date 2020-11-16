@@ -11,27 +11,22 @@ app.get('/',function(req,res){
   res.render('home.handlebars') //We can omit the .handlebars extension as we do below
 });
 
-app.get('/other-page',function(req,res){
-  res.render('other-page');
-});
-
-app.get('/get-loopback-improved',function(req,res){
+app.get('/HW5-get',function(req,res){
   var qParams = [];
   for (var p in req.query){
     qParams.push({'name':p,'value':req.query[p]})
   }
   var context = {};
   context.dataList = qParams;
-  res.render('get-loopback-improved', context);
+  res.render('HW5-get', context);
 });
-
 
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/post-loopback', function(req,res){
+app.post('/HW5-post', function(req,res){
   var qParams = [];
   for (var p in req.body){
     qParams.push({'name':p,'value':req.body[p]})
@@ -40,7 +35,7 @@ app.post('/post-loopback', function(req,res){
   console.log(req.body);
   var context = {};
   context.dataList = qParams;
-  res.render('post-loopback', context);
+  res.render('HW5-post', context);
 });
 
 app.use(function(req,res){
@@ -55,15 +50,6 @@ app.use(function(err, req, res, next){
   res.render('500');
 });
 
-function genContext(){
-  var stuffToDisplay = {};
-  stuffToDisplay.time = (new Date(Date.now())).toLocaleTimeString('en-US');
-  return stuffToDisplay;
-}
-
-app.get('/time',function(req,res){
-  res.render('time', genContext());
-});
 
 app.listen(app.get('port'), function(){
   console.log('Express started on http://flip3.engr.oregonstate.edu: ' + app.get('port') + '; press Ctrl-C to terminate.');
