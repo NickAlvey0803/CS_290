@@ -13,12 +13,12 @@ app.set('view engine', 'handlebars');
 app.set('port', 38999);
 
 
-app.get('/',function(req,res){
-  res.render('home.handlebars') //We can omit the .handlebars extension as we do below
-});
+// app.get('/',function(req,res){
+//   res.render('home.handlebars') //We can omit the .handlebars extension as we do below
+// });
 
 
-app.post('/HW5-post', function(req,res){
+app.post('/', function(req,res){
 
   var qParams3 = [];
   for (var p in req.body){
