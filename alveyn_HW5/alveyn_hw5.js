@@ -1,3 +1,5 @@
+// All Setup copied from lectures
+
 var express = require('express');
 
 var app = express();
@@ -14,11 +16,15 @@ app.set('port', 38999);
 
 
 app.get('/',function(req,res){
-  res.render('home.handlebars') //We can omit the .handlebars extension as we do below
+  res.render('home.handlebars') 
 });
 
 
-app.post('/HW5-post', function(req,res){
+// Basic Framework of Get and Post mimic the lectures, as in it runs a for-loop to push params
+// onto the handlebar template as suggested. The routes are the same style, but the way they're 
+// handled is different (see HW5-post.handlebars and HW5-get.handlebars)
+
+app.post('/HW5', function(req,res){
 
   var qParams3 = [];
   for (var p in req.body){
@@ -36,10 +42,10 @@ app.post('/HW5-post', function(req,res){
   
   context2.dataList2 = qParams2;
 
-  res.render('HW5-post.handlebars', context2);
+  res.render('HW5-post.handlebars', context2); //.handlebars added because I had trouble viewing this window (still do)
 });
 
-app.get('/HW5-get',function(req,res){
+app.get('/HW5',function(req,res){
   var qParams = [];
   for (var p in req.query){
     qParams.push({'name':p,'value':req.query[p]})
