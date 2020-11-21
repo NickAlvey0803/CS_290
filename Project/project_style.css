@@ -1,0 +1,330 @@
+/*CSS For Final Project (Nick Alvey*/
+
+* {box-sizing:border-box}
+
+head.h1{
+	align: center;
+}
+
+body{
+	background-color: #e0e0d1;
+}
+
+ul.Navigation{
+	background-color: #404040;
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+
+}
+
+.page_header{
+	text-align: center;
+}
+
+.intro{
+	text-align: center;
+}
+
+.link_current{
+	color: #cceeff;
+	font-weight: bold
+}
+
+.texts{
+	margin: auto;
+	width: 35%;
+	text-align: center;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 10%
+
+}
+
+.texts2{
+	margin: auto;
+	width: 75%;
+	text-align: center;
+	background-color: #4d4d4d;
+	color: #f2f2f2;
+
+}
+
+.nav_link:hover{
+	background-color: #0d0d0d;
+	font-weight: bold
+}
+
+.nav_link:visited{
+	color: white;
+}
+
+.nav_link:link{
+	color: white;
+}
+
+li.link_current{
+	list-style-type: none;
+}
+
+li.link{
+	list-style-type: none;
+}
+
+.myslides {
+	display:none;
+	max-width:1000px;
+	max-height: 500px;
+	border: thick solid black;
+	overflow: hidden;
+	border-radius: 10%
+}
+img {vertical-align: middle;}
+
+.carousel{
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
+	border-radius: 10%
+}
+
+
+.prev,.next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -40px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+	border-radius: 35%;
+}
+
+
+.next {
+	right: 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: #0d0d0d;
+}
+
+.caption {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 30px 30px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.image_num {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 30px 35px;
+  position: absolute;
+  top: 0;
+  background-color: 
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #66ccff;
+  transition: 0.6s ease;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 50%
+}
+
+.active, .dot:hover {
+  background: #0000b3;
+}
+
+.bottomlinkdiv{
+	background: #0d0d0d;
+	width: 75%;
+	margin: auto;
+	border: solid white;
+	text-align: center;
+}
+
+.bottomlink{
+	color: white;
+
+}
+
+.bottomlink:hover{
+	color: white;
+	font-weight: bold;
+
+}
+
+.thesis_download{
+	position:relative;
+	left:45%;
+
+}
+
+.thesis_poster_download{
+	margin: auto;
+	text-align: center;
+}
+
+.poster{
+	transition: transform .2s;
+}
+
+.poster:hover{
+	transform: scale(1.5);
+}
+
+.content1{
+	position:relative;
+	left:25%;
+}
+
+.content21{
+	position:relative;
+	left:20%;
+}
+
+.content2{
+	position:relative;
+	left:15%;
+}
+
+.content3{
+	position:relative;
+	left:5%;
+}
+
+
+.topsection{
+	margin:auto;
+	width: 75%;
+	height: 135px;
+	border: 1px solid black;
+	position: relative;
+	border-radius: 10%;
+	background-color: #b3b3b3;
+	overflow: hidden;
+
+}
+
+.topline_headers{
+	position:absolute;
+	border: thick solid black;
+	height: 100%;
+	border-radius: 0 10% 10% 0;
+	overflow: hidden;
+	left: 185px;
+	right:0;
+	overflow:auto;
+	/*float: right;*/
+}
+
+.nav_list{
+	left: 0;
+	height: 100%;
+	position:absolute;
+	height: 100%;
+	background-color: #404040;
+	width: 185px
+
+}
+
+.introduction_1{
+	text-align: center;
+}
+
+.thesis_poster_download:hover{
+	font-weight: bold
+}
+
+.thesis_poster_download:visited{
+	color: white;
+}
+
+.thesis_poster_download{
+	color: white;
+}
+
+.contactmediv{
+	margin:auto;
+	width: 75%;
+	height: 300px;
+	border: solid black;
+	position: relative;
+	background-color: #ffe6cc;
+	overflow: hidden;
+}
+
+.form_contact{
+	min-width: 200px;
+	position: absolute;
+	left: 25px;
+	right: 25px;
+	top: 50px;
+
+	
+}
+
+#submission_results{
+	margin:auto;
+	text-align: center;
+	width: 75%;
+}
+
+.Projects{
+	width: 75%;
+	border: solid black;
+	margin: auto;
+	background-color: #ccffcc;
+}
+
+.Projects2{
+	width: 75%;
+	border: solid black;
+	margin: auto;
+	background-color: #ffccff;
+}
+
+.Projects3{
+	width: 75%;
+	border: solid black;
+	margin: auto;
+	background-color: #cceeff;
+}
+
+.thesis{
+	width:100%;
+	border: solid white;
+
+}
+
+.capstone_proj{
+	width:100%;
+	border: solid white;
+}
+
+
+.c451_proj{
+	width:100%;
+	border: solid white;
+}
+
+.TopicsList{
+	width:100%;
+	border: solid white;
+}

@@ -1,0 +1,158 @@
+<!-- Nick Alvey Final Project -->
+
+<!-- Home page:
+
+  I link this page to 4 other pages (only 3 actually have real content). The 4th I wanted to link with Github using the API, but I was having trouble and decided to save it, since I have the 4 page 
+  requirement already. I do use some external code for the carousel, it is linked below and mentioned in each file it is used in. All images are taken by me.-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="project_style.css">
+    <title>Nick Alvey's Website</title>
+    <h1 class="page_header">Hello! Welcome to my Website!</h1>
+  </head>
+  <body>
+    <div class = "topsection">
+
+      <div class = "topline_headers">
+        <p class="introduction_1"> Hello! I am a Graduate of Oregon State University with an Honors Degree in Mechanical Engineering and a Minor in Spanish. I am currently pursuing a second Undergraduate Degree in Computer Science at Oregon State as I pursue my passion of robotic intelligence and robust physical design. I'm interested in Robotics, specifically in creating robots that better peoples' lives through manipulation of data and their surroundings. Other than Oregon State, I have studied abroad in Argentina, where I was not only able to cultivate my knowledge and speaking ability of Spanish, but also able to learn to embrace and connect with other cultures and people. Aside from career and academic goals, I enjoy hiking and exploring the outdoors, traveling, sports, music, and, as is a rite of passage for someone from Portland, coffee. My desire is to help people and build meaningful relationships no matter where my journey takes me.</p>
+
+      </div>
+
+      <div class = "nav_list">
+        <nav>
+          <ul class = "Navigation">
+            <li class = "link_current"><strong>Home/About Me</strong></li>
+            <!-- <li><a href="project_index.html">Home/About Me</a></li> -->
+            <li class = "link"><a class = "nav_link" href="project_github.html">My Github</a></li>
+            <li class = "link"><a class = "nav_link" href="project_projects.html">My Projects</a></li>
+            <li class = "link"><a class = "nav_link" href="project_topics.html">What I'm Reading</a></li>
+            <li class = "link"><a class = "nav_link" href="project_contactme.html">Contact Me</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div>
+
+      <h2> </h2>
+
+      <!-- I used the basis of creating the dots to move images and the pointer button from here: https://www.w3schools.com/howto/howto_js_slideshow.asp 
+        I also used the basis of their javascript function, though I had to change it quite a bit for it to run as required in the project description-->
+
+        <div class = "carousel">
+
+          <div class="myslides">
+
+            <div class="image_num">1/9</div>
+            <img src ="first_img.jpg" style = "width:100%">
+            <div class ="caption">Hi! I look forward to showing you a bit of my interests and work.</div>
+
+          </div>
+
+
+          <div class="myslides">
+
+            <div class="image_num">2/9</div>
+            <img src ="beach_img.jpg" style = "width:100%">
+            <div class ="caption">Feel free to scroll through some of my adventures!</div>
+
+          </div>
+
+          <div class="myslides">
+
+            <div class="image_num">3/9</div>
+            <img src ="wedding_img.jpeg" style = "width:100%">
+            <div class ="caption">I married my wife on August 3rd of 2019</div>
+
+          </div>
+
+
+          <div class="myslides">
+
+            <div class="image_num">4/9</div>
+            <img src ="iguazu1_img.jpg" style = "width:100%">
+            <!-- <div class ="caption">Caption</div> -->
+
+          </div>
+
+
+          <div class="myslides">
+
+            <div class="image_num">5/9</div>
+            <img src ="sister_img.jpg" style = "width:100%">
+            <!-- <div class ="caption">Caption</div> -->
+
+          </div>
+
+
+          <div class="myslides">
+
+            <div class="image_num">6/9</div>
+            <img src ="tumalo_img.jpg" style = "width:100%">
+            <!-- <div class ="caption">Caption</div> -->
+
+          </div>
+
+          <div class="myslides">
+
+            <div class="image_num">7/9</div>
+            <img src ="mtns_img.jpg" style = "width:100%">
+            <!-- <div class ="caption">Caption</div> -->
+
+          </div>
+
+          <div class="myslides">
+
+            <div class="image_num">8/9</div>
+            <img src ="kayak_img.jpg" style = "width:100%">
+            <!-- <div class ="caption">Caption</div> -->
+
+          </div>
+
+          <div class="myslides">
+
+            <div class="image_num">9/9</div>
+            <img src ="iguazu_2.jpg" style = "width:100%">
+            <!-- <div class ="caption">Caption</div> -->
+
+          </div>
+
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+
+          <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+            <span class="dot" onclick="currentSlide(9)"></span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class = "texts">
+        <h2 class="intro">My Story</h2>
+
+          <p>I was born and raised in Portland, Oregon. My family is originally from the Chicago area, and that has influenced my life a suprising amount (who in their right mind would choose thin-crust pizza?). Being from Portland has instilled an appreciation of the natural beauty that surrounds us and the importance of granting people access to enjoy it, as well as protecting it as best we can. As I said initially, I love exploring the outdoors; hiking, backpacking, traveling, and exploring are among my favorite things to do. As an interesting dichotomy, I'm also fascinated by the cutting edge of the robotics field, especially in the self/teleoperated driving sector and human-labor/human-mimicking sector. There is so much possible innovation to make the human experience richer and to make resources and technology/learning more accessible. I'm also interested in understanding the cost to those who would be displaced due to automation of their career. </p>
+
+          <p> I hope that this website gives you some insight into who I am and what I'm up to. If you want to reach out to me, just use the "Contact Me" page. Thanks!</p>
+
+      </div>
+
+
+      <div class = "bottomlinkdiv">
+        <a class = "bottomlink" href="https://www.linkedin.com/in/nick-alvey-7a1819164" target = "_blank"> My LinkedIn</a>
+      </div>
+
+      <script src="project_script.js"></script>
+  
+    </body>
+  </html>
