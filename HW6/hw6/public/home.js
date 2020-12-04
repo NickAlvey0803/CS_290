@@ -39,3 +39,4 @@ function bindButtons(){
       req.send(null);
       event.preventDefault();
     });
+};
