@@ -7,24 +7,25 @@
 
 </style>
 
-<form>
+<form action="/" method="post">
   <fieldset>
     <legend>Input Data to Enter into Table</legend>
-    <label for="Name">Name: </label>
-    <input type="text" name="name_data" id="name_data">
-    <label for="Reps">Number of Reps: </label>
-    <input type="text" name="reps_data" id="reps_data">
-    <label for="Weight">Weight Done: </label>
-    <input type="text" name="weight_data" id="weight_data">
-    <label for="Date">Date Performed (Enter as YYYY-MM-DD): </label>
-    <input type="text" name="date_data" id="date_data">
-    <label for="Unit">Unit of Measurement (UOM): </label>
-    <input type="text" name="unit_data" id="unit_data">
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name">
+    <label for="reps">Number of Reps: </label>
+    <input type="text" name="reps" id="reps">
+    <label for="weight">Weight Done: </label>
+    <input type="text" name="weight" id="weight">
+    <label for="date">Date Performed (Enter as YYYY-MM-DD): </label>
+    <input type="text" name="date" id="date">
+    <label for="unit">Unit of Measurement (UOM): </label>
+    <input type="text" name="unit" id="unit">
     <input type="submit" id="workoutSubmit">
   </fieldset>
 </form>
 
 <table>
+{{#if toDo}}
 	<tr>
 		<th>ID</th>
 		<th>Workout Name</th>
@@ -33,12 +34,22 @@
 		<th>Date Performed</th>
 		<th>Unit of Measurement</th>
 	</tr>
-  {{#each results}}
+  {{#each toDo}}
     <tr>
-    	<td>{{this.value}}</td>
+    	
+    	<td>{{this.name}}</td>
+    	<td>{{this.reps}}</td>
+    	<td>{{this.weight}}</td>
+    	<td>{{this.date}}</td>
+    	<td>{{this.unit}}</td>
+    	<form method="post">
+    		<input type="hidden" name = "id" value="{{this.id}}">
+    		<input type="submit" name = "DELETE" value="Delete">
+    	</form>
     </tr>
   {{/each}}
 </table>
 
 
 <p>{{results}}</p>
+

@@ -4,11 +4,14 @@ var mysql = require('./dbcon.js');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-document.addEventListener('DOMContentLoaded', bindButtons);
-
 app.engine('handlebars', handlebars.engine);
+var session = require('express-session')
 app.set('view engine', 'handlebars');
 app.set('port', 34901);
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({secret: 'SuperSecretPassword'}));
 
 app.get('/',function(req,res,next){
   var context = {};
@@ -25,33 +28,49 @@ app.get('/',function(req,res,next){
   });
 });
 
-function bindButtons(){
-  document.getElementById('workoutSubmit').addEventListener('click', function(event){
-      console.log("working!")
-  	
-	  var context = {};
-	  var payload = {name:null, reps:null, weight:null, date:null,unit:null};
-	  payload.name = document.getElementById('name_data').value;
-      payload.reps = document.getElementById('reps_data').value;
-      payload.weight = document.getElementById('weight_data').value;
-      payload.date = document.getElementById('date_data').value;
-      payload.unit = document.getElementById('unit_data').value;
 
-	  mysql.pool.query("INSERT INTO todo (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)", 
-	  	[payload.name, payload.reps, payload.weight, payload.date, payload.unit], function(err, result){
-	  		console.log("made here!")
-	    if(err){
-	      next(err);
-	      return;
-	    }
-	    context.results = "Inserted id " + result.insertId;
-	    res.render('home',context);
-	    console.log("rendering!")
-	  });
 
-      event.preventDefault();
-    });
-}
+
+
+
+
+app.post('/',function(req,res){
+  var context = {};
+
+  req.session.name = req.body.name;
+  req.session.toDo = [];
+  req.session.curId = 0;
+  
+
+  //If there is no session, go to the main page.
+  if(!req.session.name){
+    res.render('home', context);
+    return;
+  }
+
+  if(req.body['workoutSubmit']){
+    req.session.toDo.push({"name":req.body.name, "reps":req.session.reps, "weight":req.session.weight, "date":req.session.date, "unit":req.session.unit, "id":req.session.curId});
+    req.session.curId++;
+  }
+
+  if(req.body['DELETE']){
+    req.session.toDo = req.session.toDo.filter(function(e){
+      return e.id != req.body.id;
+    })
+  }
+
+  context.name = req.session.name;
+  context.toDoCount = req.session.toDo.length;
+  context.toDo = req.session.toDo;
+  console.log(context.toDo);
+  res.render('home',context);
+});
+
+
+
+
+
+
 
 app.get('/insert',function(req,res,next){
   var context = {};
