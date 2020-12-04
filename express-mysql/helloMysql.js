@@ -4,7 +4,7 @@ var mysql = require('./dbcon.js');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-document.addEventListener('DOMContentLoaded', bindButtons);
+// document.addEventListener('DOMContentLoaded', bindButtons);
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -45,6 +45,11 @@ function bindButtons(){
 	  });
 	  req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
+          var qParams = [];
+		  for (var p in req.query){
+		    qParams.push({'value':req.query[p]})
+		  }
+          context.dataList = qParams
           context.results = "Inserted id " + result.insertId;
           res.render('home',context);
           console.log(context)
