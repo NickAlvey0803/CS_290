@@ -27,30 +27,29 @@ app.get('/',function(req,res,next){
 
 function bindButtons(){
   document.getElementById('workoutSubmit').addEventListener('click', function(event){
-  	app.get('/',function(req, res, next)
-      var context = {};
+      
+  	app.get('/',function(req,res,next){
+	  var context = {};
 
-      req.query.name = document.getElementById('name_data').value
+	  req.query.name = document.getElementById('name_data').value
       req.query.reps = document.getElementById('reps_data').value
       req.query.weight = document.getElementById('weight_data').value
       req.query.date = document.getElementById('date_data').value
       req.query.unit = document.getElementById('unit_data').value
 
-      mysql.pool.query("INSERT INTO todo (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)",
-        [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.unit],
-        function(err, result){
-        if(err){
-          next(err);
-          return;
-        }
-	  });
-	  req.addEventListener('load',function(){
+	  mysql.pool.query("INSERT INTO todo (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)", 
+	  	[req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.unit], function(err, result){
+	    if(err){
+	      next(err);
+	      return;
+	    }
+	    req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
-			context.results = JSON.stringify(rows);
-			for (var i in context.results){
-				console.log(i)
-			}
-          var qParams = [];
+          context.results = JSON.stringify(rows);
+		  for (var i in context.results){
+		    console.log(i)
+		  }
+	     var qParams = [];
 		  for (var p in req.query){
 		    qParams.push({'value':req.query[p]})
 		  }
@@ -59,9 +58,54 @@ function bindButtons(){
         } else {
           console.log("Error in network request: " + req.statusText);
         }});
+	    
+	  });
 	});
- 
+
+      
+      req.send(null);
+      event.preventDefault();
+    });
 }
+
+// function bindButtons(){
+//   document.getElementById('workoutSubmit').addEventListener('click', function(event){
+
+//   	app.get('/',function(req, res, next){
+//       var context = {};
+
+//       req.query.name = document.getElementById('name_data').value
+//       req.query.reps = document.getElementById('reps_data').value
+//       req.query.weight = document.getElementById('weight_data').value
+//       req.query.date = document.getElementById('date_data').value
+//       req.query.unit = document.getElementById('unit_data').value
+
+//       mysql.pool.query("INSERT INTO todo (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)",
+//         [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.unit],
+//         function(err, result){
+//         if(err){
+//           next(err);
+//           return;
+//         }
+// 	  });
+// 	  req.addEventListener('load',function(){
+//         if(req.status >= 200 && req.status < 400){
+// 			context.results = JSON.stringify(rows);
+// 			for (var i in context.results){
+// 				console.log(i)
+// 			}
+//           var qParams = [];
+// 		  for (var p in req.query){
+// 		    qParams.push({'value':req.query[p]})
+// 		  }
+//           context.dataList = qParams
+//           res.render('home',context);
+//         } else {
+//           console.log("Error in network request: " + req.statusText);
+//         }});
+// 	}
+// }
+// }
 
 app.get('/insert',function(req,res,next){
   var context = {};
