@@ -4,7 +4,7 @@ var mysql = require('./dbcon.js');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-// document.addEventListener('DOMContentLoaded', bindButtons);
+document.addEventListener('DOMContentLoaded', bindButtons);
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -30,7 +30,7 @@ function bindButtons(){
       
   	
 	  var context = {};
-	  var payload = {};
+	  var payload = {name:null, reps:null, weight:null, date:null,unit:null};
 	  payload.name = document.getElementById('name_data').value;
       payload.reps = document.getElementById('reps_data').value;
       payload.weight = document.getElementById('weight_data').value;
@@ -43,27 +43,10 @@ function bindButtons(){
 	      next(err);
 	      return;
 	    }
-	    req.addEventListener('load',function(){
-        if(req.status >= 200 && req.status < 400){
-          mysql.pool.query('SELECT * FROM todo', function(err, rows, fields){
-		    if(err){
-		      next(err);
-		      return;
-		    }
-		    context.results = JSON.stringify(rows);
-		    for (var i in context.results){
-		    	console.log(i)
-		    }
-		    res.render('home', context);
-		  });
-        } else {
-          console.log("Error in network request: " + req.statusText);
-        }});
-	    
+	    context.results = "Inserted id " + result.insertId;
+	    res.render('home',context);
 	  });
 
-      
-      req.send(null);
       event.preventDefault();
     });
 }
