@@ -10,11 +10,11 @@ function bindButtons(){
       payload.reps = document.getElementById('reps').value;
       payload.weight = document.getElementById('weight').value;
       payload.date = document.getElementById('date').value;
-      payload.unit = document.getElementById('unit').value;
+      payload.lbs = document.getElementById('lbs').value;
 
       
-      req.open('GET', 'http://flip3.engr.oregonstate.edu/insert?name=' + payload.name + '&reps=' 
-        + payload.reps + '&weight='+ payload.weight + '&date=' + payload.date + '&unit=' + payload.unit, true);
+      req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/insert?name=' + payload.name + '&reps=' 
+        + payload.reps + '&weight='+ payload.weight + '&date=' + payload.date + '&lbs=' + payload.lbs, true);
       
       req.setRequestHeader('Content-Type', 'application/json');
 
