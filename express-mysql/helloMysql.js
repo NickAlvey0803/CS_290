@@ -4,18 +4,20 @@ var mysql = require('./dbcon.js');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
+
 app.engine('handlebars', handlebars.engine);
-var session = require('express-session')
+var session = require('express-session');
+var bodyParser = require('body-parser');
 app.set('view engine', 'handlebars');
 app.set('port', 34901);
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({secret: 'SuperSecretPassword'}));
+app.use(express.static('public'))
 
 app.get('/',function(req,res,next){
   var context = {};
-  mysql.pool.query('SELECT * FROM todo', function(err, rows, fields){
+  mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
       next(err);
       return;
@@ -28,53 +30,9 @@ app.get('/',function(req,res,next){
   });
 });
 
-
-
-
-
-
-
-app.post('/',function(req,res){
-  var context = {};
-
-  req.session.name = req.body.name;
-  req.session.toDo = [];
-  req.session.curId = 0;
-  
-
-  //If there is no session, go to the main page.
-  if(!req.session.name){
-    res.render('home', context);
-    return;
-  }
-
-  if(req.body['workoutSubmit']){
-    req.session.toDo.push({"name":req.body.name, "reps":req.session.reps, "weight":req.session.weight, "date":req.session.date, "unit":req.session.unit, "id":req.session.curId});
-    req.session.curId++;
-  }
-
-  if(req.body['DELETE']){
-    req.session.toDo = req.session.toDo.filter(function(e){
-      return e.id != req.body.id;
-    })
-  }
-
-  context.name = req.session.name;
-  context.toDoCount = req.session.toDo.length;
-  context.toDo = req.session.toDo;
-  console.log(context.toDo);
-  res.render('home',context);
-});
-
-
-
-
-
-
-
 app.get('/insert',function(req,res,next){
   var context = {};
-  mysql.pool.query("INSERT INTO todo (`name`) VALUES (?)", [req.query.c], function(err, result){
+  mysql.pool.query("INSERT INTO workouts (`name`) VALUES (?)", [req.query.c], function(err, result){
     if(err){
       next(err);
       return;
@@ -86,7 +44,7 @@ app.get('/insert',function(req,res,next){
 
 app.get('/delete',function(req,res,next){
   var context = {};
-  mysql.pool.query("DELETE FROM todo WHERE id=?", [req.query.id], function(err, result){
+  mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.query.id], function(err, result){
     if(err){
       next(err);
       return;
@@ -100,7 +58,7 @@ app.get('/delete',function(req,res,next){
 ///simple-update?id=2&name=The+Task&done=false&due=2015-12-5
 app.get('/simple-update',function(req,res,next){
   var context = {};
-  mysql.pool.query("UPDATE todo SET name=?, done=?, due=? WHERE id=? ",
+  mysql.pool.query("UPDATE workouts SET name=?, done=?, due=? WHERE id=? ",
     [req.query.name, req.query.done, req.query.due, req.query.id],
     function(err, result){
     if(err){
@@ -115,14 +73,14 @@ app.get('/simple-update',function(req,res,next){
 ///safe-update?id=1&name=The+Task&done=false
 app.get('/safe-update',function(req,res,next){
   var context = {};
-  mysql.pool.query("SELECT * FROM todo WHERE id=?", [req.query.id], function(err, result){
+  mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result){
     if(err){
       next(err);
       return;
     }
     if(result.length == 1){
       var curVals = result[0];
-      mysql.pool.query("UPDATE todo SET name=?, done=?, due=? WHERE id=? ",
+      mysql.pool.query("UPDATE workouts SET name=?, done=?, due=? WHERE id=? ",
         [req.query.name || curVals.name, req.query.done || curVals.done, req.query.due || curVals.due, req.query.id],
         function(err, result){
         if(err){
@@ -138,14 +96,14 @@ app.get('/safe-update',function(req,res,next){
 
 app.get('/reset-table',function(req,res,next){
   var context = {};
-  mysql.pool.query("DROP TABLE IF EXISTS todo", function(err){
-    var createString = "CREATE TABLE todo(" +
-    "id INT PRIMARY KEY AUTO_INCREMENT," +
-    "name VARCHAR(255) NOT null," +
-    "reps VARCHAR(255)," +
-    "weight VARCHAR(255)," +
-    "date DATE," +
-    "unit VARCHAR(255))";
+  mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ //replace your connection pool with the your variable containing the connection pool
+    var createString = "CREATE TABLE workouts("+
+    "id INT PRIMARY KEY AUTO_INCREMENT,"+
+    "name VARCHAR(255) NOT NULL,"+
+    "reps INT,"+
+    "weight INT,"+
+    "date DATE,"+
+    "lbs BOOLEAN)";
     mysql.pool.query(createString, function(err){
       context.results = "Table reset";
       res.render('home',context);
