@@ -28,7 +28,7 @@ app.get('/',function(req,res,next){
 function bindButtons(){
   document.getElementById('workoutSubmit').addEventListener('click', function(event){
       
-  	app.get('/',function(req,res,next){
+  	
 	  var context = {};
 	  var payload = {};
 	  payload.name = document.getElementById('name_data').value;
@@ -45,17 +45,22 @@ function bindButtons(){
 	    }
 	    req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
-          context.results = JSON.stringify(rows);
-		  for (var i in context.results){
-		    console.log(i)
-		  }
-          res.render('home',context);
+          mysql.pool.query('SELECT * FROM todo', function(err, rows, fields){
+		    if(err){
+		      next(err);
+		      return;
+		    }
+		    context.results = JSON.stringify(rows);
+		    for (var i in context.results){
+		    	console.log(i)
+		    }
+		    res.render('home', context);
+		  });
         } else {
           console.log("Error in network request: " + req.statusText);
         }});
 	    
 	  });
-	});
 
       
       req.send(null);
