@@ -17,22 +17,21 @@ app.use(express.static('public'))
 
 app.get('/',function(req,res,next){
   var context = {};
+  var params = [];
   mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
       next(err);
       return;
     }
     context.results = JSON.stringify(rows);
-    for (var i in context.results){
-    	console.log(i)
-    }
     res.render('home', context);
   });
 });
 
 app.get('/insert',function(req,res,next){
   var context = {};
-  mysql.pool.query("INSERT INTO workouts (`name`) VALUES (?)", [req.query.c], function(err, result){
+  mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)", 
+    [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.unit], function(err, result){
     if(err){
       next(err);
       return;
