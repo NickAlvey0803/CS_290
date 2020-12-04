@@ -27,7 +27,7 @@
 </form>
 
 <table>
-{{#if toDo}}
+{{#if results}}
 	<tr>
 		<th>ID</th>
 		<th>Workout Name</th>
@@ -36,7 +36,7 @@
 		<th>Date Performed</th>
 		<th>Unit of Measurement</th>
 	</tr>
-  {{#each results}}
+  {{#each todo}}
     <tr>
     	
     	<td>{{this.name}}</td>
@@ -48,4 +48,5 @@
   {{/each}}
 </table>
 
+<p>{{results}}</p>
 
