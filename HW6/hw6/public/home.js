@@ -13,9 +13,14 @@ function bindButtons(){
       payload.lbs = document.getElementById('lbs').value;
 
       
+      console.log('http://flip3.engr.oregonstate.edu:34901/insert?name=' + payload.name + '&reps=' 
+        + payload.reps + '&weight='+ payload.weight + '&date=' + payload.date + '&lbs=' + payload.lbs)
+
       req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/insert?name=' + payload.name + '&reps=' 
         + payload.reps + '&weight='+ payload.weight + '&date=' + payload.date + '&lbs=' + payload.lbs, true);
       
+
+
       req.setRequestHeader('Content-Type', 'application/json');
 
       req.addEventListener('load',function(){
