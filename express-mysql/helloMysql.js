@@ -27,7 +27,7 @@ app.get('/',function(req,res,next){
 
 function bindButtons(){
   document.getElementById('workoutSubmit').addEventListener('click', function(event){
-      
+      console.log("working!")
   	
 	  var context = {};
 	  var payload = {name:null, reps:null, weight:null, date:null,unit:null};
@@ -39,12 +39,14 @@ function bindButtons(){
 
 	  mysql.pool.query("INSERT INTO todo (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)", 
 	  	[payload.name, payload.reps, payload.weight, payload.date, payload.unit], function(err, result){
+	  		console.log("made here!")
 	    if(err){
 	      next(err);
 	      return;
 	    }
 	    context.results = "Inserted id " + result.insertId;
 	    res.render('home',context);
+	    console.log("rendering!")
 	  });
 
       event.preventDefault();
