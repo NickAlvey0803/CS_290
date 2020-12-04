@@ -27,6 +27,7 @@ app.get('/',function(req,res,next){
 
 function bindButtons(){
   document.getElementById('workoutSubmit').addEventListener('click', function(event){
+  	app.get('/',function(req, res, next)
       var context = {};
 
       req.query.name = document.getElementById('name_data').value
@@ -58,12 +59,8 @@ function bindButtons(){
         } else {
           console.log("Error in network request: " + req.statusText);
         }});
-      
-    });
-      
-
-
-      
+	});
+ 
 }
 
 app.get('/insert',function(req,res,next){
