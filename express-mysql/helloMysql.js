@@ -23,6 +23,40 @@ app.get('/',function(req,res,next){
   });
 });
 
+function bindButtons(){
+  document.getElementById('workoutSubmit').addEventListener('click', function(event){
+      var context = {};
+
+      req.query.name = document.getElementById('name_data').value
+      req.query.reps = document.getElementById('reps_data').value
+      req.query.weight = document.getElementById('weight_data').value
+      req.query.date = document.getElementById('date_data').value
+      req.query.unit = document.getElementById('unit_data').value
+
+      mysql.pool.query("INSERT INTO todo (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)",
+        [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.unit],
+        function(err, result){
+        if(err){
+          next(err);
+          return;
+        }
+	  });
+	  req.addEventListener('load',function(){
+        if(req.status >= 200 && req.status < 400){
+          context.results = "Inserted id " + result.insertId;
+          res.render('home',context);
+          console.log(context)
+        } else {
+          console.log("Error in network request: " + req.statusText);
+        }});
+      
+    });
+      
+
+
+      
+}
+
 app.get('/insert',function(req,res,next){
   var context = {};
   mysql.pool.query("INSERT INTO todo (`name`) VALUES (?)", [req.query.c], function(err, result){
@@ -92,9 +126,11 @@ app.get('/reset-table',function(req,res,next){
   mysql.pool.query("DROP TABLE IF EXISTS todo", function(err){
     var createString = "CREATE TABLE todo(" +
     "id INT PRIMARY KEY AUTO_INCREMENT," +
-    "name VARCHAR(255) NOT NULL," +
-    "done BOOLEAN," +
-    "due DATE)";
+    "name VARCHAR(255) NOT null," +
+    "reps VARCHAR(255)," +
+    "weight VARCHAR(255)," +
+    "date DATE," +
+    "unit VARCHAR(255))";
     mysql.pool.query(createString, function(err){
       context.results = "Table reset";
       res.render('home',context);

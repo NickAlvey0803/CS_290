@@ -7,6 +7,23 @@
 
 </style>
 
+<form>
+  <fieldset>
+    <legend>Input Data to Enter into Table</legend>
+    <label for="Name">Name: </label>
+    <input type="text" name="name_data" id="name_data">
+    <label for="Reps">Number of Reps: </label>
+    <input type="text" name="reps_data" id="reps_data">
+    <label for="Weight">Weight Done: </label>
+    <input type="text" name="weight_data" id="weight_data">
+    <label for="Date">Date Performed (Enter as YYYY-MM-DD): </label>
+    <input type="text" name="date_data" id="date_data">
+    <label for="Unit">Unit of Measurement (UOM): </label>
+    <input type="text" name="unit_data" id="unit_data">
+    <input type="submit" id="workoutSubmit">
+  </fieldset>
+</form>
+
 <table>
 	<tr>
 		<th>ID</th>
@@ -16,6 +33,13 @@
 		<th>Date Performed</th>
 		<th>Unit of Measurement</th>
 	</tr>
+  {{#each dataList}}
+    <tr>
+    	<td>{{this.name}}</td>
+    	<td>{{this.value}}</td>
+    </tr>
+  {{/each}}
+</table>
 
 
 <p>{{results}}</p>
