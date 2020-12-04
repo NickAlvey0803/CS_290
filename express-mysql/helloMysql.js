@@ -16,6 +16,9 @@ app.get('/',function(req,res,next){
       return;
     }
     context.results = JSON.stringify(rows);
+    for (var i in context.results){
+    	console.log(i)
+    }
     res.render('home', context);
   });
 });
