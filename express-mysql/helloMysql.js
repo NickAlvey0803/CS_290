@@ -45,14 +45,16 @@ function bindButtons(){
 	  });
 	  req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
+			context.results = JSON.stringify(rows);
+			for (var i in context.results){
+				console.log(i)
+			}
           var qParams = [];
 		  for (var p in req.query){
 		    qParams.push({'value':req.query[p]})
 		  }
           context.dataList = qParams
-          context.results = "Inserted id " + result.insertId;
           res.render('home',context);
-          console.log(context)
         } else {
           console.log("Error in network request: " + req.statusText);
         }});
