@@ -40,7 +40,7 @@ function bindButtons2(){
      document.getElementById('deleteSubmit').addEventListener('click', function(event){
         var req = new XMLHttpRequest();
         var payload = {id:null};
-        payload.id = getElementById("id");
+        payload.id = getElementById("id").value;
 
         req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id, true);
 
