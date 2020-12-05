@@ -38,7 +38,7 @@ function bindButtons(){
 function bindButtons2(){
   document.getElementById('deleteSubmit').addEventListener('click', function(event){
       var req = new XMLHttpRequest();
-      var payload = {id = null};
+      var payload = {id:null};
       payload.id = document.getElementById('id').value
       
       console.log('http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id)
