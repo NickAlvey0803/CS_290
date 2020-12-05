@@ -54,8 +54,14 @@ app.get('/delete',function(req,res,next){
       next(err);
       return;
     }
-    context.results = JSON.parse(JSON.stringify(rows));
-    res.render('home',context);
+    mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
+      if(err){
+        next(err);
+        return;
+      }
+      context.results = JSON.parse(JSON.stringify(rows));
+      res.render('home', context);
+    });
   });
 });
 
@@ -110,7 +116,7 @@ app.get('/reset-table',function(req,res,next){
     "date DATE,"+
     "lbs BOOLEAN)";
     mysql.pool.query(createString, function(err){
-      context.results = JSON.parse(JSON.stringify(rows));
+      context.results = "Table Reset"
       res.render('home',context);
     })
   });
