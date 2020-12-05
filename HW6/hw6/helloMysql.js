@@ -28,8 +28,8 @@ app.get('/',function(req,res,next){
     for(var i in context.results){
         params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
     }
-    console.log(context.results)
     context.datalist = params;
+    context.log("printing from here!")
     res.render('home', context);
   });
 });
@@ -53,8 +53,8 @@ app.get('/insert',function(req,res,next){
       for(var i in context.results){
         params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
       }
-      console.log(context.results)
       context.datalist = params;
+      console.log(context.datalist)
       res.render('home', context);
     });
   });
