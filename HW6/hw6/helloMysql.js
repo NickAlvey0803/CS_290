@@ -42,15 +42,6 @@ app.get('/insert',function(req,res,next){
         return;
       }
       context.results = JSON.parse(JSON.stringify(rows));
-      
-      var params = [];
-      for(var i in context.results){
-        console.log(i)
-        params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
-        console.log(params)
-      }
-      context.datalist = params;
-      console.log(context.datalist)
       res.render('home', context);
     });
   });
