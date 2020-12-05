@@ -54,7 +54,7 @@ app.get('/delete',function(req,res,next){
       next(err);
       return;
     }
-    context.results = JSON.stringify(rows);
+    context.results = JSON.parse(JSON.stringify(rows));
     res.render('home',context);
   });
 });
@@ -70,7 +70,7 @@ app.get('/simple-update',function(req,res,next){
       next(err);
       return;
     }
-    context.results = JSON.stringify(rows);
+    context.results = JSON.parse(JSON.stringify(rows));
     res.render('home',context);
   });
 });
@@ -92,7 +92,7 @@ app.get('/safe-update',function(req,res,next){
           next(err);
           return;
         }
-        context.results = JSON.stringify(rows);
+        context.results = JSON.parse(JSON.stringify(rows));
         res.render('home',context);
       });
     }
@@ -110,7 +110,7 @@ app.get('/reset-table',function(req,res,next){
     "date DATE,"+
     "lbs BOOLEAN)";
     mysql.pool.query(createString, function(err){
-      context.results = "Table reset";
+      context.results = JSON.parse(JSON.stringify(rows));
       res.render('home',context);
     })
   });
