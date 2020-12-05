@@ -26,10 +26,12 @@ app.get('/',function(req,res,next){
     context.results = JSON.parse(JSON.stringify(rows));
     var params = [];
     for(var i in context.results){
+        console.log(i)
         params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
     }
     context.datalist = params;
-    context.log("printing from here!")
+    console.log("printing from here!")
+
     res.render('home', context);
   });
 });
