@@ -48,6 +48,7 @@ app.get('/insert',function(req,res,next){
         params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
       }
       console.log(context.results)
+      context.datalist = params;
       res.render('home', context);
     });
   });
