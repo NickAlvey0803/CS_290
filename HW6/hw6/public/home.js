@@ -1,6 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', bindButtons)
+document.addEventListener('DOMContentLoaded', bindButtons2)
 
 function bindButtons(){
   document.getElementById('workoutSubmit').addEventListener('click', function(event){
@@ -25,14 +26,7 @@ function bindButtons(){
 
       req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
-          // var response = JSON.parse(req.responseText);
-          // var params = [];
-          // for(var i in response){
-          //   params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
-          // }
-          // console.log(response)
-          // context.datalist = params;
-          // res.render('home.handlebars', context)
+          
         } else {
           console.log("Error in network request: " + req.statusText);
         }});
@@ -40,3 +34,27 @@ function bindButtons(){
       //event.preventDefault();
     });
 };
+
+function bindButtons2(){
+  document.getElementById('deleteSubmit').addEventListener('click', function(event){
+      var req = new XMLHttpRequest();
+      var payload = {id = null};
+      payload.id = document.getElementById('id').value
+      
+      console.log('http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id)
+
+      req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id, true);
+ 
+      req.setRequestHeader('Content-Type', 'application/json');
+
+      req.addEventListener('load',function(){
+        if(req.status >= 200 && req.status < 400){
+          
+        } else {
+          console.log("Error in network request: " + req.statusText);
+        }});
+      req.send(null);
+      //event.preventDefault();
+    });
+};
+

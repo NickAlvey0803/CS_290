@@ -33,6 +33,7 @@
 		<th>Weight Done</th>
 		<th>Date Performed</th>
 		<th>Unit of Measurement</th>
+        <th>Edit/Delte</th>
 	</tr>
 
     {{#each results}}
@@ -43,6 +44,17 @@
     	<td>{{this.weight}}</td>
     	<td>{{this.date}}</td>
     	<td>{{this.lbs}}</td>
+        <td>
+            <form method="get">
+                <input type="hidden", name = "id", id = "id", value="{{this.id}}">
+                <input type="submit", name = "deleteSubmit", value="DELETE">
+            </form>
+            <form method="get">
+                <input type="hidden", name = "id", id = "id", value="{{this.id}}">
+                <input type="submit", name = "editSubmit", value="EDIT">
+            </form>
+
+        </td>
     </tr>
     {{/each}}
    
