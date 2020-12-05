@@ -37,31 +37,25 @@ function bindButtons(){
 
 // if(document.getElementById('deleteSubmit') !== null){
 function bindButtons2(){
-    var buttons = document.getElementsByTagName('deleteSubmit');
-    var buttonsCount = buttons.length;
-    for(var i = 0; i <= buttonsCount; i += 1) {
-      buttons[i].onclick = function(e){
-        var payload = {id:(this.id).value}
-      }
-    }
+     document.getElementById('deleteSubmit').addEventListener('click', function(event){
+        var req = new XMLHttpRequest();
+        var payload = {id:null};
+        payload.id = getElementById("id");
 
+        req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id, true);
 
-    var req = new XMLHttpRequest();
+        req.setRequestHeader('Content-Type', 'application/json');
 
-    req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id, true);
-
-    req.setRequestHeader('Content-Type', 'application/json');
-
-    req.addEventListener('load',function(){
-      if(req.status >= 200 && req.status < 400){
-        
-      } else {
-        console.log("Error in network request: " + req.statusText);
-      }});
-    req.send(null);
+        req.addEventListener('load',function(){
+          if(req.status >= 200 && req.status < 400){
+            
+          } else {
+            console.log("Error in network request: " + req.statusText);
+          }});
+        req.send(null);
     //event.preventDefault();
-  };
-// }
+  });
+}
 
 
 
