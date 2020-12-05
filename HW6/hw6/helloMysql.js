@@ -54,7 +54,7 @@ app.get('/delete',function(req,res,next){
       next(err);
       return;
     }
-    context.results = "Deleted " + result.changedRows + " rows.";
+    context.results = JSON.stringify(rows);
     res.render('home',context);
   });
 });
@@ -70,7 +70,7 @@ app.get('/simple-update',function(req,res,next){
       next(err);
       return;
     }
-    context.results = "Updated " + result.changedRows + " rows.";
+    context.results = JSON.stringify(rows);
     res.render('home',context);
   });
 });
@@ -92,7 +92,7 @@ app.get('/safe-update',function(req,res,next){
           next(err);
           return;
         }
-        context.results = "Updated " + result.changedRows + " rows.";
+        context.results = JSON.stringify(rows);
         res.render('home',context);
       });
     }
