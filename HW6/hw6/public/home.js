@@ -42,10 +42,7 @@ if(document.getElementById('deleteSubmit') !== null){
       var payload = {id:null};
       payload.id = document.getElementById('id').value
 
-      console.log(payload.id)
-      console.log(payload.id[0])
-
-      req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id[0], true);
+      req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id, true);
  
       req.setRequestHeader('Content-Type', 'application/json');
 
