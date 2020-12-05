@@ -41,8 +41,9 @@ if(document.getElementById('deleteSubmit') !== null){
       var req = new XMLHttpRequest();
       var payload = {id:null};
       payload.id = document.getElementById('id').value
-      
-      console.log('http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id)
+
+      console.log(payload.id)
+      console.log(payload.id[0])
 
       req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id, true);
  
