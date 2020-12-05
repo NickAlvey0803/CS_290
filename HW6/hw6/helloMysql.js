@@ -23,7 +23,7 @@ app.get('/',function(req,res,next){
       next(err);
       return;
     }
-    context.results = JSON.stringify(rows);
+    // context.results = JSON.stringify(rows);
     res.render('home', context);
   });
 });
@@ -36,14 +36,14 @@ app.get('/insert',function(req,res,next){
       next(err);
       return;
     }
-    // mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
-    //   if(err){
-    //     next(err);
-    //     return;
-    //   }
-    context.results = JSON.parse(JSON.stringify(rows));
-    res.render('home', context);
-    // });
+    mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
+      if(err){
+        next(err);
+        return;
+      }
+      context.results = JSON.parse(JSON.stringify(rows));
+      res.render('home', context);
+    });
   });
 });
 
