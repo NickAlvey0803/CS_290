@@ -37,10 +37,16 @@ function bindButtons(){
 
 // if(document.getElementById('deleteSubmit') !== null){
 function bindButtons2(){
-  document.getElementById('deleteSubmit').addEventListener('click', function(event){
+    var buttons = document.getElementsByTagName('deleteSubmit');
+    var buttonsCount = buttons.length;
+    for(var i = 0; i <= buttonsCount; i += 1) {
+      buttons[i].onclick = function(e){
+        var payload = {id:(this.id).value}
+      }
+    }
+
+
     var req = new XMLHttpRequest();
-    var payload = {id:null};
-    payload.id = document.getElementById('id').value
 
     req.open('GET', 'http://flip3.engr.oregonstate.edu:34901/delete?id=' + payload.id, true);
 
@@ -54,8 +60,7 @@ function bindButtons2(){
       }});
     req.send(null);
     //event.preventDefault();
-  });
-};
+  };
 // }
 
 
