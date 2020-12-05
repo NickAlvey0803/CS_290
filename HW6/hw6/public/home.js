@@ -26,13 +26,13 @@ function bindButtons(){
       req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
           var response = JSON.parse(req.responseText);
-          // document.getElementById('temp').textContent = response.main.temp + " degrees";
-          // document.getElementById('feels_like').textContent = response.main.feels_like + " degrees";
-          // document.getElementById('humidity').textContent = response.main.humidity + "%";
-          // document.getElementById('description').textContent = response.weather[0].description;
-          // document.getElementById('temp_max').textContent = response.main.temp_max + " degrees";
-          // document.getElementById('temp_min').textContent = response.main.temp_min + " degrees";
+          var params = [];
+          for(var i in response){
+            params.push('date':i.date, 'lbs':i.lbs, 'name':i.name, 'reps':i.reps, 'weight':i.weight)
+          }
           console.log(response)
+          context.datalist = params;
+          res.render('home.handlebars', context)
         } else {
           console.log("Error in network request: " + req.statusText);
         }});
