@@ -42,7 +42,7 @@ app.get('/insert',function(req,res,next){
         return;
       }
       context.results = JSON.stringify(rows);
-      res.render('home', context);
+      res.send(context.results);
     });
   });
 });
