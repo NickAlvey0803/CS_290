@@ -25,14 +25,14 @@ function bindButtons(){
 
       req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
-          var response = JSON.parse(req.responseText);
-          var params = [];
-          for(var i in response){
-            params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
-          }
-          console.log(response)
-          context.datalist = params;
-          res.render('home.handlebars', context)
+          // var response = JSON.parse(req.responseText);
+          // var params = [];
+          // for(var i in response){
+          //   params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
+          // }
+          // console.log(response)
+          // context.datalist = params;
+          // res.render('home.handlebars', context)
         } else {
           console.log("Error in network request: " + req.statusText);
         }});
