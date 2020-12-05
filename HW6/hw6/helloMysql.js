@@ -23,7 +23,13 @@ app.get('/',function(req,res,next){
       next(err);
       return;
     }
-    context.results = JSON.stringify(rows);
+    context.results = JSON.parse(JSON.stringify(rows));
+    var params = [];
+    for(var i in context.results){
+        params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
+    }
+    console.log(context.results)
+    context.datalist = params;
     res.render('home', context);
   });
 });
@@ -43,7 +49,7 @@ app.get('/insert',function(req,res,next){
       }
       context.results = JSON.parse(JSON.stringify(rows));
       
-      params = []
+      var params = [];
       for(var i in context.results){
         params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
       }
