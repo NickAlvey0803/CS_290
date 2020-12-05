@@ -35,8 +35,9 @@ function bindButtons(){
     });
 };
 
-function bindButtons2(){
-  document.getElementById('deleteSubmit').addEventListener('click', function(event){
+if(document.getElementById('deleteSubmit') !== null){
+  function bindButtons2(){
+    document.getElementById('deleteSubmit').addEventListener('click', function(event){
       var req = new XMLHttpRequest();
       var payload = {id:null};
       payload.id = document.getElementById('id').value
@@ -56,5 +57,8 @@ function bindButtons2(){
       req.send(null);
       //event.preventDefault();
     });
-};
+  };
+}
+
+
 
