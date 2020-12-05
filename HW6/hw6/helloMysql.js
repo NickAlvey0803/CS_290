@@ -41,7 +41,8 @@ app.get('/insert',function(req,res,next){
         next(err);
         return;
       }
-      context.results = JSON.parse(rows);
+      context.results = JSON.parse(JSON.stringify(rows));
+      
       params = []
       for(var i in context.results){
         params.push({'date':i.date}, {'lbs':i.lbs}, {'name':i.name}, {'reps':i.reps}, {'weight':i.weight})
